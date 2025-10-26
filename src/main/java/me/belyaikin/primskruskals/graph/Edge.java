@@ -1,6 +1,6 @@
 package me.belyaikin.primskruskals.graph;
 
-public class Edge {
+public final class Edge {
     private final int weight;
     private boolean included;
 
