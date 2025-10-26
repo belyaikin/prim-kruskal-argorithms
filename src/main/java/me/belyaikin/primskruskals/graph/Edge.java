@@ -4,9 +4,8 @@ public final class Edge {
     private final int weight;
     private boolean included;
 
-    public Edge(int weight, boolean included) {
+    public Edge(int weight) {
         this.weight = weight;
-        this.included = included;
     }
 
     public int getWeight() {
