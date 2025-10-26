@@ -2,7 +2,7 @@
   "graphs": [
     {
       "id": 1,
-      "vertexes": ["A", "B", "C", "D", "E"],
+      "vertices": ["A", "B", "C", "D", "E"],
       "edges": [
         {"from": "A", "to": "B", "weight": 4},
         {"from": "A", "to": "C", "weight": 3},
@@ -15,7 +15,7 @@
     },
     {
       "id": 2,
-      "vertexes": ["A", "B", "C", "D"],
+      "vertices": ["A", "B", "C", "D"],
       "edges": [
         {"from": "A", "to": "B", "weight": 1},
         {"from": "A", "to": "C", "weight": 4},
