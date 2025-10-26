@@ -20,6 +20,7 @@ public class Prim<T> implements Algorithm {
         int operations = 0;
         long startTime = System.nanoTime();
 
+        /// ---
         if (!graph.vertices().isEmpty()) graph.vertices().getFirst().setVisited(true);
 
         while(graph.vertices().stream().anyMatch(vertex -> !vertex.isVisited())) {
@@ -35,6 +36,7 @@ public class Prim<T> implements Algorithm {
 
             operations++;
         }
+        /// ---
 
         long stopTime = System.nanoTime();
 
