@@ -1,17 +1,17 @@
 package me.belyaikin.primskruskals.prim;
 
+import me.belyaikin.primskruskals.graph.Graph;
 import me.belyaikin.primskruskals.graph.Vertex;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 
-public record Prim<T>(List<Vertex<T>> graph) {
+public record Prim<T>(Graph<T> graph) {
     public void run() {
-        if (!graph.isEmpty()) graph.getFirst().setVisited(true);
+        if (!graph.vertices().isEmpty()) graph.vertices().getFirst().setVisited(true);
 
-        while(graph.stream().anyMatch(vertex -> !vertex.isVisited())) {
-            graph.stream().filter(Vertex::isVisited)
+        while(graph.vertices().stream().anyMatch(vertex -> !vertex.isVisited())) {
+            graph.vertices().stream().filter(Vertex::isVisited)
                     .map(Vertex::getNeighbors)
                     .flatMap(Collection::stream)
                     .filter(tNeighbor -> !tNeighbor.isVisited())
