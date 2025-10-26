@@ -1,6 +1,6 @@
-package prim;
+package me.belyaikin.primskruskals.prim;
 
-import graph.Vertex;
+import me.belyaikin.primskruskals.graph.Vertex;
 
 import java.util.Collection;
 import java.util.Comparator;

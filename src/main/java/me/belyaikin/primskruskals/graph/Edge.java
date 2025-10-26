@@ -1,4 +1,4 @@
-package graph;
+package me.belyaikin.primskruskals.graph;
 
 public class Edge {
     private final int weight;
