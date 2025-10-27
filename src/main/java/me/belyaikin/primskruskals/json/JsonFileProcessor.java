@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class JsonFileProcessor {
+public final class JsonFileProcessor {
     public static String getInputJsonFile(String path) {
         try {
             return Files.readString(Paths.get(path));

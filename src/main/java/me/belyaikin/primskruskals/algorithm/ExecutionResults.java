@@ -19,9 +19,6 @@ public class ExecutionResults {
 
     @Override
     public String toString() {
-        return "ExecutionResults{" +
-                "operations=" + operations +
-                ", executionTime=" + executionTime +
-                '}';
+        return STR."\"ExecutionResults\":\n {\"operations\"=\{operations}, \"executionTime\"=\{executionTime}}";
     }
 }

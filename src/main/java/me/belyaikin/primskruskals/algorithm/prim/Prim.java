@@ -3,10 +3,9 @@ package me.belyaikin.primskruskals.algorithm.prim;
 import me.belyaikin.primskruskals.algorithm.Algorithm;
 import me.belyaikin.primskruskals.algorithm.ExecutionResults;
 import me.belyaikin.primskruskals.graph.Graph;
-import me.belyaikin.primskruskals.graph.Vertex;
 
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Prim<T> implements Algorithm {
     private final Graph<T> graph;
@@ -17,29 +16,56 @@ public class Prim<T> implements Algorithm {
 
     @Override
     public ExecutionResults run() {
-        int operations = 0;
+        AtomicInteger operations = new AtomicInteger();
         long startTime = System.nanoTime();
 
         /// ---
-        if (!graph.vertices().isEmpty()) graph.vertices().getFirst().setVisited(true);
+        if (!graph.vertices().isEmpty()) {
+            graph.vertices().getFirst().setVisited(true);
 
-        while(graph.vertices().stream().anyMatch(vertex -> !vertex.isVisited())) {
-            graph.vertices().stream().filter(Vertex::isVisited)
-                    .map(Vertex::getNeighbors)
+            operations.getAndIncrement();
+        }
+
+        while (graph.vertices().stream().anyMatch(v -> {
+            operations.getAndIncrement();
+
+            return !v.isVisited();
+        })) {
+            var candidate = graph.vertices().stream()
+                    .filter(v -> {
+                        operations.getAndIncrement();
+
+                        return v.isVisited();
+                    })
+                    .map(v -> {
+                        operations.getAndIncrement();
+
+                        return v.getNeighbors();
+                    })
                     .flatMap(Collection::stream)
-                    .filter(tNeighbor -> !tNeighbor.isVisited())
-                    .min(Comparator.comparingInt(n -> n.edge().getWeight()))
-                    .ifPresent(candidate -> {
-                        candidate.vertex().setVisited(true);
-                        candidate.edge().setIncluded(true);
+                    .filter(neighbor -> {
+                        operations.getAndIncrement();
+
+                        return !neighbor.isVisited();
+                    })
+                    .min((n1, n2) -> {
+                        operations.getAndIncrement();
+
+                        return Integer.compare(n1.edge().getWeight(), n2.edge().getWeight());
                     });
 
-            operations++;
+            if (candidate.isPresent()) {
+                var n = candidate.get();
+                n.vertex().setVisited(true);
+                n.edge().setIncluded(true);
+
+                operations.addAndGet(2);
+            }
         }
         /// ---
 
         long stopTime = System.nanoTime();
 
-        return new ExecutionResults(operations, stopTime - startTime);
+        return new ExecutionResults(operations.get(), stopTime - startTime);
     }
 }
