@@ -26,8 +26,9 @@ public class AlgorithmTester {
         Map<Integer, Map<String, ExecutionResults>> resultsMap = new HashMap<>();
 
         for (Graph<String> graph : graphs) {
+            Graph<String> graphCopy = graph;
             ExecutionResults primsResults = new Prim<>(graph).run();
-            ExecutionResults kruskalsResults = new Kruskal<>(graph).run();
+            ExecutionResults kruskalsResults = new Kruskal<>(graphCopy).run();
 
             Map<String, ExecutionResults> results = new HashMap<>();
             results.put("prims", primsResults);
