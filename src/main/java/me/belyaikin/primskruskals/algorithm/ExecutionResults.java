@@ -16,4 +16,12 @@ public class ExecutionResults {
     public long getExecutionTime() {
         return executionTime;
     }
+
+    @Override
+    public String toString() {
+        return "ExecutionResults{" +
+                "operations=" + operations +
+                ", executionTime=" + executionTime +
+                '}';
+    }
 }

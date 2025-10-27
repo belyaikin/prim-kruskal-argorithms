@@ -44,7 +44,7 @@ public record GraphParser(String json) {
                 fromVertex.addNeighbor(toVertex, edge);
             }
 
-            graphs.add(new Graph<>(new ArrayList<>(vertexMap.values())));
+            graphs.add(new Graph<>(graphJson.getInt("id"), new ArrayList<>(vertexMap.values())));
         }
 
         return graphs;

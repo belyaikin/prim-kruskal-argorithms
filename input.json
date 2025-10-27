@@ -1,6 +1,7 @@
 {
   "graphs": [
     {
+      "id": 0,
       "vertices": ["A", "B", "C", "D", "E"],
       "edges": [
         {"from": "A", "to": "B", "weight": 4},
@@ -13,6 +14,7 @@
       ]
     },
     {
+      "id": 1,
       "vertices": ["A", "B", "C", "D"],
       "edges": [
         {"from": "A", "to": "B", "weight": 1},
